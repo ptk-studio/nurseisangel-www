@@ -1,8 +1,18 @@
 <!doctype html>
 <html lang="en" data-page="/privacy/"><head><meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://api.88eggs.com; connect-src https://api.88eggs.com; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://api.88eggs.com https://www.googletagmanager.com; connect-src https://api.88eggs.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag("consent","default",{ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",analytics_storage:"denied",region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","IS","LI","NO","GB","CH"]});
+gtag("consent","default",{ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",analytics_storage:"granted"});
+gtag("set","ads_data_redaction",true);
+(function(){var s=(new URLSearchParams(location.search).get("src")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,32);
+gtag("js",new Date());
+gtag("config","G-S0S9JV0LHQ",{allow_google_signals:false,allow_ad_personalization_signals:false,page_location:location.origin+location.pathname+(s?"?src="+s:"")});})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0S9JV0LHQ"></script><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Privacy · Nurse Is Angel</title><meta name="robots" content="noindex">
 <style>
 :root{--accent:#2f5d8a;--bg:#fffdf9;--fg:#1d1d24;--muted:#5d5d6b;--line:#e9e4dc;--card:#ffffff}
@@ -34,13 +44,17 @@ footer a{color:var(--muted)}
 <main class="story">
 <h1>Privacy</h1>
 <p>Last updated: 18 November 2026.</p>
-<p>nurseisangel.com is run by PTK Studio. The products are designed by Honey Storm, our product line. The site has no accounts, no sign-up and no advertising, and it sets no cookies.</p>
+<p>nurseisangel.com is run by PTK Studio. The products are designed by Honey Storm, our product line. The site has no accounts, no sign-up and no advertising.</p>
 <h2>What we count</h2>
 <p>When you open a page here, or tap a product link, the page sends a short note to our counter at api.88eggs.com (PTK Studio's 88eggs service). The note says <strong>which of our pages</strong> you're on, <strong>which product</strong> you tapped, the <strong>campaign tag</strong> in the link you came from, and the time. The campaign tag is one word from a fixed list (for example <em>ig</em> for Instagram, <em>pin</em> for Pinterest); anything else is saved as "other".</p>
 <p>That's all the counter keeps. <strong>It doesn't store your IP address, a cookie, your browser or device details, or the address of the page you came from.</strong> To stop floods of fake visits, it keeps a scrambled code made from your IP address (a keyed hash that changes every day) for 10 minutes, then forgets it. Visits from search-engine robots are dropped, and test visits we make ourselves are marked and left out of our numbers.</p>
 <p>We use the counts only to see which products people are interested in. We delete them after <strong>365 days</strong>.</p>
+<h2>Visit statistics (Google Analytics)</h2>
+<p>We also use Google Analytics (part of Google's Firebase) to understand how the site is used: which pages are viewed, which product you tapped, how you arrived (for example from Instagram), your device and browser type, and roughly where you are (country and city, worked out from your IP address). Google processes your IP address to do this; Google Analytics doesn't store it.</p>
+<p><strong>Outside the European Economic Area, the UK and Switzerland,</strong> Google Analytics sets cookies on this site (named <em>_ga</em> and <em>_ga_…</em>) to tell a returning visit from a new one; they expire after up to 2 years. <strong>In the EEA, the UK and Switzerland,</strong> no Analytics cookies are set: the page sends Google only cookieless signals, which Google uses to estimate visit numbers.</p>
+<p><strong>It's never used for advertising:</strong> advertising cookies, ad personalization and Google signals are switched off, and we don't share the data with advertisers. Google Analytics keeps the detailed data for 2 months. You can read how Google uses this data in <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites that use its services</a> and <a href="https://policies.google.com/privacy">Google's privacy policy</a>. To opt out, use the <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics opt-out add-on</a>, or block cookies for this site in your browser.</p>
 <h2>Cookies</h2>
-<p>None. This site doesn't set cookies or use browser storage, and it has no ads or tracking from other companies.</p>
+<p>This site's own code sets no cookies and uses no browser storage. The only cookies are Google Analytics', outside the EEA, the UK and Switzerland, as described above. There are no ads or advertising trackers.</p>
 <h2>Product links</h2>
 <p>Product links open a short page on nurseisangel.com/go/… that sends you straight on to the store (Amazon or shop.88eggs.com). The link may carry a tag naming this site. The store's own privacy policy applies there.</p>
 <h2>Feedback</h2>
@@ -63,7 +77,9 @@ function send(o){if(src)o.src=src;var b=JSON.stringify(o);
 var page=document.documentElement.getAttribute("data-page")||location.pathname;
 send({kind:"view",page:page});
 document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-product]");
- if(a)send({kind:"click",product:a.getAttribute("data-product"),page:page});},true);
+ if(!a)return;
+ send({kind:"click",product:a.getAttribute("data-product"),page:page});
+ if(typeof window.gtag==="function")window.gtag("event","product_click",{product_id:a.getAttribute("data-product"),transport_type:"beacon"});},true);
 })();
 </script>
 
