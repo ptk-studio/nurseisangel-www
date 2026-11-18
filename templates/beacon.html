@@ -1,0 +1,13 @@
+<script>
+(function(){"use strict";
+var api="{{api}}/funnel/v1/{{slug}}";
+var q=new URLSearchParams(location.search);var src=(q.get("src")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,32);
+function send(o){if(src)o.src=src;var b=JSON.stringify(o);
+ try{if(navigator.sendBeacon&&navigator.sendBeacon(api,b))return;}catch(e){}
+ try{fetch(api,{method:"POST",body:b,keepalive:true,mode:"cors",credentials:"omit"});}catch(e){}}
+var page=document.documentElement.getAttribute("data-page")||location.pathname;
+send({kind:"view",page:page});
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-product]");
+ if(a)send({kind:"click",product:a.getAttribute("data-product"),page:page});},true);
+})();
+</script>

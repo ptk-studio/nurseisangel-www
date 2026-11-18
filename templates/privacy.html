@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-page="/privacy/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy · {{title}}</title><meta name="robots" content="noindex">
+<style>
+:root{--accent:{{accent}};--bg:#fffdf9;--fg:#1d1d24;--muted:#5d5d6b;--line:#e9e4dc;--card:#ffffff}
+@media (prefers-color-scheme:dark){:root{--bg:#141418;--fg:#f3f1ee;--muted:#a9a7b2;--line:#2c2b33;--card:#1c1b21}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 Georgia,"Iowan Old Style","Times New Roman",serif}
+header,main,footer{max-width:960px;margin:0 auto;padding:0 20px}
+header{padding-top:28px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.logo{font:700 20px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.02em;color:var(--fg);text-decoration:none}
+.logo span{color:var(--accent)}
+nav a{font:15px system-ui,-apple-system,sans-serif;color:var(--muted)}
+.hero{padding:48px 0 24px}
+.hero h1{font-size:clamp(32px,6vw,52px);line-height:1.1;margin:0 0 12px}
+.hero p{font-size:19px;color:var(--muted);max-width:640px;margin:0}
+.story{max-width:680px}.story h2{margin-top:36px}
+.grid{list-style:none;padding:0;margin:24px 0 48px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column}
+.card img,.card .ph{width:100%;height:auto;aspect-ratio:1;border-radius:10px;object-fit:cover;background:color-mix(in srgb,var(--accent) 14%,var(--card))}
+.card h3{font-size:19px;margin:14px 0 4px}.card p{margin:4px 0}
+.meta{font:14px system-ui,-apple-system,sans-serif;color:var(--muted)}
+.buy,.soon{margin-top:auto;padding-top:12px;font:600 15px system-ui,-apple-system,sans-serif}
+.buy{display:inline-block;margin-top:auto;background:var(--accent);color:#fff;text-decoration:none;border-radius:999px;padding:10px 18px;text-align:center}
+.buy:focus-visible,a:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+.soon{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:20px;margin-top:24px;font:14px/1.6 system-ui,-apple-system,sans-serif;color:var(--muted)}
+footer a{color:var(--muted)}
+</style></head><body>
+<header><a class="logo" href="/">{{title}}</a><nav><a href="/privacy/">Privacy</a></nav></header>
+<main class="story">
+<h1>Privacy</h1>
+<p>Last updated: 18 November 2026.</p>
+<p>{{domain}} is run by PTK Studio. The products are designed by Honey Storm, our product line. The site has no accounts, no sign-up and no advertising, and it sets no cookies.</p>
+<h2>What we count</h2>
+<p>When you open a page here, or tap a product link, the page sends a short note to our counter at api.88eggs.com (PTK Studio's 88eggs service). The note says <strong>which of our pages</strong> you're on, <strong>which product</strong> you tapped, the <strong>campaign tag</strong> in the link you came from, and the time. The campaign tag is one word from a fixed list (for example <em>ig</em> for Instagram, <em>pin</em> for Pinterest); anything else is saved as "other".</p>
+<p>That's all the counter keeps. <strong>It doesn't store your IP address, a cookie, your browser or device details, or the address of the page you came from.</strong> To stop floods of fake visits, it keeps a scrambled code made from your IP address (a keyed hash that changes every day) for 10 minutes, then forgets it. Visits from search-engine robots are dropped, and test visits we make ourselves are marked and left out of our numbers.</p>
+<p>We use the counts only to see which products people are interested in. We delete them after <strong>365 days</strong>.</p>
+<h2>Cookies</h2>
+<p>None. This site doesn't set cookies or use browser storage, and it has no ads or tracking from other companies.</p>
+<h2>Product links</h2>
+<p>Product links go through {{domain}}/go/… to the store (Amazon or shop.88eggs.com). The link may carry a tag naming this site. The store's own privacy policy applies there.</p>
+<h2>Feedback</h2>
+<p>If you send us feedback in {{title}} (through the feedback button, form or app screen), we receive your message, the kind of feedback you chose, an optional star rating, the page or app version you were using, and your language setting. We ask for your email only if you want a reply, and we keep it only if you tick the box allowing us to contact you; we delete it after at most 90 days. We don't use cookies or tracking for feedback, and we don't collect device identifiers. We also store the IP address your feedback was sent from, to prevent abuse; it is deleted with your feedback after one year. Feedback is stored by PTK Studio's 88eggs service (hosted in the United States), used only to fix problems and improve {{title}}, never sold or shared, and deleted after one year. To have your feedback deleted sooner, contact us at hello@ptk-studio.com.</p>
+<h2>Hosting</h2>
+<p>The site is hosted by Cloudflare. As our host, Cloudflare processes your IP address to deliver the pages to you, under <a href="https://www.cloudflare.com/privacypolicy/">its own privacy policy</a>.</p>
+<h2>Contact</h2>
+<p><a href="mailto:hello@ptk-studio.com">hello@ptk-studio.com</a></p>
+<p><a href="/">Back to the collection</a></p>
+</main>
+<footer><p>{{disclosure}}</p><p>{{brand}} · <a href="/privacy/">Privacy</a> · {{domain}} · © {{year}}</p></footer>
+{{feedback}}
+{{beacon}}
+</body></html>
