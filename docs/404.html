@@ -42,7 +42,7 @@ footer a{color:var(--muted)}
 </style></head><body>
 <header><a class="logo" href="/">Nurse Is Angel</a><nav><a href="/privacy/">Privacy</a></nav></header>
 <main class="story"><h1>We couldn't find that page</h1><p><a href="/">See the collection</a></p></main>
-<footer><p>Designed by Honey Storm. The designs are set in type by our own tools; this page&#x27;s words were drafted with AI help and checked by our team.</p><p>Honey Storm, by PTK Studio · <a href="/privacy/">Privacy</a> · nurseisangel.com · © 2026</p></footer>
+<footer><p>Designed by Honey Storm. The designs are set in type by our own tools; this page&#x27;s words were drafted with AI help and checked by our team.</p><p>Honey Storm, by Mochi Factory · <a href="/privacy/">Privacy</a> · <a href="https://mochi-factory.com/" rel="noopener">More from Mochi Factory</a> · nurseisangel.com · © 2026</p></footer>
 <script>
 (function(){"use strict";
 var api="https://api.88eggs.com/funnel/v1/nurseisangel";
@@ -52,7 +52,7 @@ function send(o){if(src)o.src=src;var b=JSON.stringify(o);
  try{fetch(api,{method:"POST",body:b,keepalive:true,mode:"cors",credentials:"omit"});}catch(e){}}
 var page=document.documentElement.getAttribute("data-page")||location.pathname;
 // Carry our sanitised campaign tag onto the /go links, so the click here and the go there share a source.
-if(src){var gl=document.querySelectorAll("a[data-product]");for(var i=0;i<gl.length;i++){var h=gl[i].getAttribute("href")||"";if(h.indexOf("/go/")===0&&h.indexOf("?")<0)gl[i].setAttribute("href",h+"?src="+src);}}
+if(src){var hop="https://api.88eggs.com/go/",gl=document.querySelectorAll("a[data-product]");for(var i=0;i<gl.length;i++){var h=gl[i].getAttribute("href")||"";if((h.indexOf("/go/")===0||h.indexOf(hop)===0)&&h.indexOf("?")<0)gl[i].setAttribute("href",h+"?src="+src);}}
 send({kind:"view",page:page});
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".poll button[data-answer]");
  if(b){var box=b.closest(".poll");if(!box||box.getAttribute("data-done"))return;box.setAttribute("data-done","1");
