@@ -1,6 +1,6 @@
 # Metrics: nurseisangel
 
-**Status: proposed 2026-11-18 (t1-worker2), for t1-manager's approval.** It comes from campaign 001 First Cent
+**Status: accepted as the plan by t1-manager, 2026-11-18 16:11 ET (nurseisangel-www#10).** It comes from campaign 001 First Cent
 (`mochi-factory/campaigns/001-first-cent.md`) and the funnel design (`mochi-factory/docs/marketing/2026-11-18-funnel-design.md`).
 
 ## The goal
