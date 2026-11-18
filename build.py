@@ -145,7 +145,7 @@ def build(slug: str, preview: bool = False) -> Path:
     if out.exists():
         shutil.rmtree(out)
     (out / "privacy").mkdir(parents=True)
-    feedback = (f'<script src="{API}/feedback/widget.js" data-key="{html.escape(site["feedback_key"])}" '
+    feedback = (f'<script src="{API}/feedback/widget.js?v=2" data-key="{html.escape(site["feedback_key"])}" '
                 f'data-label="Feedback" async></script>' if site.get("feedback_key") else "")
     common = dict(beacon=BEACON.replace("{{api}}", API).replace("{{slug}}", slug),
         title=html.escape(site["title"]), domain=html.escape(site["domain"]), accent=html.escape(site["accent"]),
