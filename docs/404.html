@@ -54,7 +54,12 @@ var page=document.documentElement.getAttribute("data-page")||location.pathname;
 // Carry our sanitised campaign tag onto the /go links, so the click here and the go there share a source.
 if(src){var gl=document.querySelectorAll("a[data-product]");for(var i=0;i<gl.length;i++){var h=gl[i].getAttribute("href")||"";if(h.indexOf("/go/")===0&&h.indexOf("?")<0)gl[i].setAttribute("href",h+"?src="+src);}}
 send({kind:"view",page:page});
-document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-product]");
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".poll button[data-answer]");
+ if(b){var box=b.closest(".poll");if(!box||box.getAttribute("data-done"))return;box.setAttribute("data-done","1");
+  send({kind:"poll",product:box.getAttribute("data-poll"),answer:b.getAttribute("data-answer"),page:page});
+  var bs=box.querySelectorAll("button");for(var j=0;j<bs.length;j++)bs[j].disabled=true;
+  var t=box.querySelector(".pt");if(t)t.hidden=false;return;}
+ var a=e.target.closest&&e.target.closest("a[data-product]");
  if(!a)return;
  send({kind:"click",product:a.getAttribute("data-product"),page:page});
  if(typeof window.gtag==="function")window.gtag("event","product_click",{product_id:a.getAttribute("data-product"),transport_type:"beacon"});},true);
