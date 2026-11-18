@@ -83,8 +83,10 @@ class BuiltSite(unittest.TestCase):
                        "a keyed hash that changes every day) for 10 minutes", "365 days",
                        "test visits we make ourselves are marked", "doesn't set cookies or use browser storage",
                        "is run by PTK Studio", "hello@ptk-studio.com",
-                       "Cloudflare processes your IP address to deliver the pages",
+                       "GitHub processes your IP address to deliver the pages",
+                       "run behind Cloudflare, which processes your IP address",
                        "The link may carry a tag naming this site",
+                       "sends you straight on to the store",
                        # the Owner-approved Feedback paragraph, word for word (incl. the IP sentence)
                        "We also store the IP address your feedback was sent from, to prevent abuse; it is deleted "
                        "with your feedback after one year.",
