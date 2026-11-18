@@ -38,6 +38,11 @@ nav a{font:15px system-ui,-apple-system,sans-serif;color:var(--muted)}
 .buy{display:inline-block;margin-top:auto;background:var(--accent);color:#fff;text-decoration:none;border-radius:999px;padding:10px 18px;text-align:center}
 .buy:focus-visible,a:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
 .soon{color:var(--muted)}
+.poll{margin:10px 0 4px;padding:10px;border:1px dashed var(--line);border-radius:10px;font:14px/1.4 system-ui,-apple-system,sans-serif}
+.poll .pq{margin:0 0 8px;font-weight:600}.poll .po{display:flex;flex-wrap:wrap;gap:6px}
+.poll button{font:inherit;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.poll button:focus-visible{outline:3px solid var(--fg);outline-offset:2px}.poll button[disabled]{opacity:.5;cursor:default}
+.poll .pt{margin:8px 0 0;color:var(--muted)}
 footer{border-top:1px solid var(--line);padding:20px;margin-top:24px;font:14px/1.6 system-ui,-apple-system,sans-serif;color:var(--muted)}
 footer a{color:var(--muted)}
 </style></head><body>
@@ -51,8 +56,8 @@ footer a{color:var(--muted)}
 <p>Each design is one honest line, set in clear type. No slogans about being a superhero. Just thank you.</p></section>
 <h2 id="gifts">The collection</h2>
 <ul class="grid">
-<li class="card"><img src="/img/planner-2027-nurse-shift.jpg" alt="2027 Nurse Shift Planner" loading="lazy"><h3>2027 Nurse Shift Planner</h3><p class="meta">Planner, 6x9 paperback · price soon · Amazon</p><p>Monthly shift calendars, weekly hours and sleep, CE log, license renewals and pay periods.</p><span class="soon">Coming soon</span></li>
-<li class="card"><img src="/img/tee-twelve-hours-of-heart.jpg" alt="Twelve Hours of Heart" loading="lazy"><h3>Twelve Hours of Heart</h3><p class="meta">T-shirt · $19.99 · Amazon</p><p>For nurses who give their whole heart to every twelve-hour shift.</p><span class="soon">Coming soon</span></li>
+<li class="card"><img src="/img/planner-2027-nurse-shift.jpg" alt="2027 Nurse Shift Planner" loading="lazy"><h3>2027 Nurse Shift Planner</h3><p class="meta">Planner, 6x9 paperback · price soon · Amazon</p><p>Monthly shift calendars, weekly hours and sleep, CE log, license renewals and pay periods.</p><div class="poll" data-poll="hs-nurse-planner-2027-pb" role="group" aria-label="What would you pay for this?"><p class="pq">What would you pay for this?</p><div class="po"><button type="button" data-answer="under-10">Under $10</button><button type="button" data-answer="10-15">$10–15</button><button type="button" data-answer="15-20">$15–20</button><button type="button" data-answer="over-20">Over $20</button></div><p class="pt" role="status" hidden>Thank you! That helps us price it fairly.</p></div><span class="soon">Coming soon</span></li>
+<li class="card"><img src="/img/tee-twelve-hours-of-heart.jpg" alt="Twelve Hours of Heart" loading="lazy"><h3>Twelve Hours of Heart</h3><p class="meta">T-shirt · $19.99 · Amazon</p><p>For nurses who give their whole heart to every twelve-hour shift.</p><div class="poll" data-poll="nia-tee-twelve-hours" role="group" aria-label="What would you pay for this?"><p class="pq">What would you pay for this?</p><div class="po"><button type="button" data-answer="under-10">Under $10</button><button type="button" data-answer="10-15">$10–15</button><button type="button" data-answer="15-20">$15–20</button><button type="button" data-answer="over-20">Over $20</button></div><p class="pt" role="status" hidden>Thank you! That helps us price it fairly.</p></div><span class="soon">Coming soon</span></li>
 <li class="card"><img src="/img/tee-sunrise-is-my-lunch-break.jpg" alt="Sunrise Is My Lunch Break" loading="lazy"><h3>Sunrise Is My Lunch Break</h3><p class="meta">T-shirt · $19.99 · Amazon</p><p>For the nurse whose &quot;lunch&quot; happens at 6 a.m.</p><span class="soon">Coming soon</span></li>
 <li class="card"><img src="/img/tee-grace-under-fluorescent-lights.jpg" alt="Grace Under Fluorescent Lights" loading="lazy"><h3>Grace Under Fluorescent Lights</h3><p class="meta">T-shirt · $19.99 · Amazon</p><p>Calm and kind under the hospital lights.</p><span class="soon">Coming soon</span></li>
 <li class="card"><img src="/img/tee-silent-night-busy-unit.jpg" alt="Silent Night, Busy Unit" loading="lazy"><h3>Silent Night, Busy Unit</h3><p class="meta">T-shirt · $19.99 · Amazon</p><p>For the nurses working over the holidays.</p><span class="soon">Coming soon</span></li>
@@ -75,7 +80,12 @@ var page=document.documentElement.getAttribute("data-page")||location.pathname;
 // Carry our sanitised campaign tag onto the /go links, so the click here and the go there share a source.
 if(src){var gl=document.querySelectorAll("a[data-product]");for(var i=0;i<gl.length;i++){var h=gl[i].getAttribute("href")||"";if(h.indexOf("/go/")===0&&h.indexOf("?")<0)gl[i].setAttribute("href",h+"?src="+src);}}
 send({kind:"view",page:page});
-document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-product]");
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".poll button[data-answer]");
+ if(b){var box=b.closest(".poll");if(!box||box.getAttribute("data-done"))return;box.setAttribute("data-done","1");
+  send({kind:"poll",product:box.getAttribute("data-poll"),answer:b.getAttribute("data-answer"),page:page});
+  var bs=box.querySelectorAll("button");for(var j=0;j<bs.length;j++)bs[j].disabled=true;
+  var t=box.querySelector(".pt");if(t)t.hidden=false;return;}
+ var a=e.target.closest&&e.target.closest("a[data-product]");
  if(!a)return;
  send({kind:"click",product:a.getAttribute("data-product"),page:page});
  if(typeof window.gtag==="function")window.gtag("event","product_click",{product_id:a.getAttribute("data-product"),transport_type:"beacon"});},true);
