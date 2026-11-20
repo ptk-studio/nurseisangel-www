@@ -13,3 +13,5 @@ hand outside that process. It sits at the repo root, outside `docs/`, so GitHub 
 - `JOURNAL.md`: dated notes on what changed and why.
 - `plans/<YYYY>.md`: the yearly plan. Each plan has a `Status:` line (proposed, or approved with the date).
 - `proposals/{pending,approved,rejected,completed}/`: proposals by state.
+
+**Every PTK Studio project and its GitHub repos:** [mochi-factory/project-groups/PROJECTS.md](https://github.com/ptk-studio/ptk-studio/blob/main/mochi-factory/project-groups/PROJECTS.md).
